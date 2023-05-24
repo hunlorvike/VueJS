@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Language Translator | CodingNepal</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Font Awesome CDN Link for Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div id="app" class="container">
+      <form action="" @submit.prevent>
+        <div class="wrapper">
+          <div class="text-input">
+            <textarea
+              spellcheck="false"
+              v-model="text_before"
+              class="from-text"
+              placeholder="Enter text"
+              @keyup="clearTranslation"
+            ></textarea>
+            <textarea
+              spellcheck="false"
+              readonly
+              disabled
+              class="to-text"
+              placeholder="Translation"
+            >
+{{ text_after }}</textarea
+            >
+          </div>
+          <ul class="controls">
+            <li class="row from">
+              <div class="icons">
+                <i class="fas fa-volume-up" @click="speak('from')"></i>
+                <i class="fas fa-copy" @click="copyText('from')"></i>
+              </div>
+              <select v-model="language_before">
+                <option
+                  v-for="(country, code) in countries"
+                  :key="code"
+                  :value="code"
+                >
+                  {{ country }}
+                </option>
+              </select>
+            </li>
+            <li class="exchange" @click="exchange">
+              <i class="fas fa-exchange-alt"></i>
+            </li>
+            <li class="row to">
+              <select v-model="language_after">
+                <option
+                  v-for="(country, code) in countries"
+                  :key="code"
+                  :value="code"
+                >
+                  {{ country }}
+                </option>
+              </select>
+              <div class="icons">
+                <i class="fas fa-volume-up" @click="speak('to')"></i>
+                <i class="fas fa-copy" @click="copyText('to')"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <button @click="translate">Translate Text</button>
+      </form>
+    </div>
+
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="js/countries.js"></script>
+    <!-- <script src="js/script.js"></script> -->
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

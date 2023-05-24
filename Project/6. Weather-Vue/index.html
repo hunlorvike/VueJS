@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Day #10 - Weather App | Nguyen Viet Hung</title>
+  </head>
+
+  <body>
+    <div id="app" class="container" :style="{height: containerHeight}">
+      <div class="search-box">
+        <i class="fa-solid fa-location-dot"></i>
+        <input type="text" placeholder="Enter your location" v-model="city" />
+        <button
+          class="fa-solid fa-magnifying-glass"
+          @click="searchWeather"
+        ></button>
+      </div>
+
+      <div
+        :class="{'not-found': true, 'fadeIn': show404}"
+        :style="{ display: error404Display }"
+      >
+        <img src="./images/404.png" />
+        <p>Oops! Invalid location :/</p>
+      </div>
+
+      <div
+        class="weather-box"
+        :class="{fadeIn : show}"
+        :style="{ display: weatherBoxDisplay }"
+      >
+        <img :src="weatherBoxImageSrc" />
+        <p class="temperature">{{ temp }}</p>
+        <p class="description">{{ description }}</p>
+      </div>
+
+      <div
+        class="weather-details"
+        :class="{fadeIn : show}"
+        :style="{ display: weatherDetailsDisplay }"
+      >
+        <div class="humidity">
+          <i class="fa-solid fa-water"></i>
+          <div class="text">
+            <span>{{ humidity }}</span>
+            <p>Humidity</p>
+          </div>
+        </div>
+        <div class="wind">
+          <i class="fa-solid fa-wind"></i>
+          <div class="text">
+            <span>{{ wind }}</span>
+            <p>Wind Speed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/7c8801c017.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./main.js"></script>
+  </body>
+</html>

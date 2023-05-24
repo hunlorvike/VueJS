@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App | Nguyen Viet Hung</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css" />
+    <!-- Bootstrap -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"> -->
+    <!-- Font-awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <!-- Box icon -->
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="wrapper">
+        <header>Todo App</header>
+        <div class="inputField">
+          <input
+            type="text"
+            v-model="newTodo"
+            placeholder="Add your new todo"
+          />
+          <button @click="addTodo">
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
+        <ul class="todoList p-0" v-for="todo in todos" :key="todo.id">
+          <li :class="{completed: todo.status}" @click="completed(todo)">
+            {{todo.value}}
+            <span @click="removeTodo(todo)">
+              <i class="fas fa-trash icon"></i>
+            </span>
+          </li>
+        </ul>
+        <div class="footer">
+          <span>You have <span class="pendingTasks"></span> pending tasks</span>
+          <button @click="removeAllTodo">Clear All</button>
+        </div>
+      </div>
+      <div id="”tasks”"></div>
+    </div>
+
+    <!-- SCRIPT -->
+    <!-- <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+
+    <script type="module" src="./main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- Coding By CodingNepal - youtube.com/codingnepal -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Notes App in VueJS | Nguyen Viet Hung</title>
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Iconscout Link For Icons -->
+    <link
+      rel="stylesheet"
+      href="https://unicons.iconscout.com/release/v4.0.0/css/line.css"
+    />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="popup-box" :class="{show: isShowPopup}">
+        <div class="popup">
+          <div class="content">
+            <header>
+              <p>{{popupTitle}}</p>
+              <i class="uil uil-times" @click="closePopup"></i>
+            </header>
+            <form
+              action="#"
+              @submit.prevent="isEditing ? updateNote() : addNote()"
+            >
+              <div class="row title">
+                <label>Title</label>
+                <input v-model="title" type="text" spellcheck="false" />
+              </div>
+              <div class="row description">
+                <label>Description</label>
+                <textarea v-model="desc" spellcheck="false"></textarea>
+              </div>
+              <button>{{buttonText}}</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="wrapper">
+        <li @click="showPopup" class="add-box">
+          <div class="icon"><i class="uil uil-plus"></i></div>
+          <p>Add new note</p>
+        </li>
+        <li class="note" v-for="note in listNote" :key="note.id">
+          <div class="details">
+            <p>{{note.title}}</p>
+            <span> {{note.desc}} </span>
+          </div>
+          <div class="bottom-content">
+            <span>{{note.currentTime}}</span>
+            <div class="settings" :class="{show: note.isShowMenu}">
+              <i @click="showMenu(note)" class="uil uil-ellipsis-h"></i>
+              <ul class="menu" v-if="note.isShowMenu">
+                <li @click="editNote(note)"><i class="uil uil-pen"></i>Edit</li>
+                <li @click="deleteNote(note)">
+                  <i class="uil uil-trash"></i>Delete
+                </li>
+              </ul>
+            </div>
+          </div>
+        </li>
+      </div>
+    </div>
+
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="./main.js"></script>
+  </body>
+</html>
