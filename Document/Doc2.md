@@ -28,3 +28,4 @@ Cấu trúc thư mục
   - Bat buoc
 
 - 2 way binding
+hoho
